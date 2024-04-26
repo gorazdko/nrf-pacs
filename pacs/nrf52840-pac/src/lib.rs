@@ -71,6 +71,7 @@ extern "C" {
     fn RTC2();
     fn I2S();
     fn FPU();
+    fn SYST();
     fn USBD();
     fn UARTE1();
     fn QSPI();
@@ -87,7 +88,7 @@ pub union Vector {
 #[doc(hidden)]
 #[link_section = ".vector_table.interrupts"]
 #[no_mangle]
-pub static __INTERRUPTS: [Vector; 48] = [
+pub static __INTERRUPTS: [Vector; 49] = [
     Vector {
         _handler: POWER_CLOCK,
     },
@@ -151,6 +152,7 @@ pub static __INTERRUPTS: [Vector; 48] = [
     Vector { _handler: RTC2 },
     Vector { _handler: I2S },
     Vector { _handler: FPU },
+    Vector { _handler: SYST },
     Vector { _handler: USBD },
     Vector { _handler: UARTE1 },
     Vector { _handler: QSPI },
@@ -253,6 +255,8 @@ pub enum Interrupt {
     PWM3 = 45,
     #[doc = "47 - SPIM3"]
     SPIM3 = 47,
+    #[doc = "48 - SYST"]
+    SYST = 48,
 }
 unsafe impl cortex_m::interrupt::InterruptNumber for Interrupt {
     #[inline(always)]
