@@ -71,6 +71,7 @@ extern "C" {
     fn RTC2();
     fn I2S();
     fn FPU();
+    fn SYST();
     fn USBD();
     fn UARTE1();
     fn QSPI();
@@ -253,6 +254,8 @@ pub enum Interrupt {
     PWM3 = 45,
     #[doc = "47 - SPIM3"]
     SPIM3 = 47,
+    #[doc = "48 - SYST"]
+    SYST = 48,
 }
 unsafe impl cortex_m::interrupt::InterruptNumber for Interrupt {
     #[inline(always)]
